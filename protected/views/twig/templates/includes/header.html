@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    {{ codeUTF8|raw }}
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>{{ titulo }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	{{ favicon|raw }}
+	{% for key, value in css_files %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- HELPERS -->
+        {% for key, value in css_files_HELPERS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- ELEMENTS -->
+        {% for key, value in css_files_ELEMENTS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- ICONS -->
+        {% for key, value in css_files_ICONS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- WIDGETS -->
+        {% for key, value in css_files_WIDGETS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- SNIPPETS -->
+        {% for key, value in css_files_SNIPPETS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- APPLICATIONS -->
+        {% for key, value in css_files_APPLICATIONS %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- Admin theme -->
+        {% for key, value in css_files_Admin_theme %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- Components theme -->
+        {% for key, value in css_files_Components_theme %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- Admin responsive -->
+        {% for key, value in css_files_Admin_responsive %}
+		<link rel="stylesheet" type="text/css" href="{{ pathSite }}{{ value }}">
+	{% endfor %}
+        <!-- JS Core -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {% for key, value in js_core %}
+		<script type="text/javascript" src="{{ pathSite }}{{ value }}"></script>
+	{% endfor %}
+        <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+       
+</head>
+<body onload="document.refresh();">
+<div id="loading">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>

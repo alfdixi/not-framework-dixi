@@ -1,0 +1,13 @@
+    </body>
+    
+	{% for key, value in js_files %}
+		<script type="text/javascript" src="{{ pathSite }}{{ value }}"></script>
+	{% endfor %}
+        
+        {% for key, value in js_files_footer %}
+		<script type="text/javascript" src="{{ pathSite }}{{ value }}"></script>
+	{% endfor %}
+        
+        
+        
+</html>

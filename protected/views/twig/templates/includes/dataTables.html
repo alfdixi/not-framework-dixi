@@ -1,0 +1,19 @@
+{% for key, value in js_files_dataTable %}
+<script type="text/javascript" src="{{ pathSite }}{{ value }}"></script>
+{% endfor %}
+<script type="text/javascript">
+/**
+ * Data Tables
+ */
+$(document).ready(function () {
+    var table = $('#datatable-tabletools').DataTable();
+    var tt = new $.fn.dataTable.TableTools(table);
+    $(tt.fnContainer()).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
+    $('.DTTT_container').addClass('btn-group');
+    $('.DTTT_container a').addClass('btn btn-default btn-md');
+    $('.dataTables_filter input').attr("placeholder", "Search...");
+});
+$(document).ready(function () {
+    $('.dataTables_filter input').attr("placeholder", "Buscar...");
+});
+</script>

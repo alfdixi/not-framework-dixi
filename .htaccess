@@ -1,0 +1,45 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !^(.+)\.jpg$
+RewriteCond %{REQUEST_FILENAME} !^(.+)\.png$
+RewriteCond %{REQUEST_FILENAME} !^(.+)\.gif$
+RewriteCond %{REQUEST_FILENAME} !^(.+)\.css$
+RewriteCond %{REQUEST_FILENAME} !^(.+)\.js$
+RewriteCond %{REQUEST_URI} !/(.*)\.
+RewriteRule ^(.+)$ index.php?con=$1 [L]
+
+#Comprimir
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript
+
+#ETag
+<ifModule mod_headers.c>
+Header unset ETag
+</ifModule>
+FileETag None
+#Expire
+#ExpiresDefault "access plus 30 days"
+#Header unset ETag
+#FileETag None
+#<FilesMatch "(?i)^.*\.(ico|flv|jpg|jpeg|png|gif|js|css)$">
+#Header unset Last-Modified
+#Header set Expires "Fri, 21 Dec 2012 00:00:00 GMT"
+#Header set Cache-Control "public, no-transform"
+#</FilesMatch>
+#ExpiresActive On
+<ifModule mod_headers.c>
+    Header set Connection keep-alive
+</ifModule>
+
+RewriteOptions Inherit
+
+#Check to see if browser can accept gzip files.
+ReWriteCond %{HTTP:accept-encoding} (gzip.*)
+
+#make sure there's no trailing .gz on the url
+#ReWriteCond %{REQUEST_FILENAME} !^.+\.gz$
+
+#check to see if a .gz version of the file exists.
+RewriteCond %{REQUEST_FILENAME}.gz -f
+
+#All conditions met so add .gz to URL filename (invisibly)
+RewriteRule ^(.+) $1.gz [L] 
+# FIN Compresion GZip

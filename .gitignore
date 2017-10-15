@@ -1,0 +1,13 @@
+nbproject/*
+!.gitignore
+!.htaccess
+!cms/.htaccess
+.DS_Store
+*~
+*.zip
+*.bak
+*error_log
+.ftpquota
+*.mp3
+*.m4v
+*.mp4

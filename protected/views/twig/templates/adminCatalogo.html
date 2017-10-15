@@ -1,0 +1,102 @@
+{% include 'includesAdmin/header.html' %}
+<div id="sb-site">
+    {% include 'includesAdmin/loading.html' %}
+    <div id="page-wrapper">
+        {% include 'includesAdmin/header2.html' %}
+        <div id="page-sidebar">
+            {% include 'includesAdmin/nav.html' %}
+        </div>
+        <div id="page-content-wrapper">
+            <div id="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div id="page-title">
+                            <h2>Catálogo</h2>
+                            <p>{{dominio|upper|replace({'_': ' '})}}</p>
+                        </div>  
+                    </div>
+                    <div class="panel">
+                        <form id="frm1" name="frm1" action="{{pathSite}}agregar" method="post" autocomplete="off">
+                            <input type="hidden" name="Dominio" id="Dominio" value="{{dominio}}">
+                            <input type="hidden" name="idReg" id="idReg" value="">
+                            <input type="hidden" name="Action" id="Action" value="">
+                            <input type="hidden" name="path" id="path" value="{{pathSite}}">
+                            <div class="panel-heading">
+                                <div class="text-right">
+                                    <button class="btn btn-labeled btn-default" type="submit">
+                                        <span class="btn-label">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </span> Agregar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="example-box-wrapper">
+                                    <table id="datatable-tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                {% if isImg %} 
+                                                <th>&nbsp;</th>
+                                                {% endif %}
+                                                {% for keyx, value in campos %}
+                                                {% if keyx == "password" or keyx == "notas" or keyx == "id" %}
+                                                {% else %}
+                                                <th class="">{{ value|replace({"_":" "}) }}</th>
+                                                {% endif %}
+                                                {% endfor %}
+                                                <th class="">&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for key, value in datos %}
+                                            <tr class="gradeX">
+                                                {% if isImg %} 
+                                                <td><img src="{{ pathSite }}includes/images/{{ dominio }}/{{value.id}}.jpg" width="40" class="img-circle" /></td>
+                                                {% endif %} 
+                                                {% for k, v in campos %}
+                                                {% if k == "password" or k == "notas" or k == "id" %}
+                                                {% else %}
+                                                {% if value.relaciones[k] != NULL %}
+                                                {% for krr, vr in value.relaciones[k] %}
+                                                {% if krr == value[k] %}
+                                                <td>{{vr}}</td>
+                                                {% endif %}
+                                                {% endfor %}   
+                                                {% else %}
+                                                <td>{{value[k]}}</td>
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
+                                                <td>
+                                                    <button class="btn btn-labeled btn-default" type="button" onclick="clickBtn({{value.id}}, 'edit', 'editar', 'frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyphicon glyphicon-pencil"></i>
+                                                        </span>
+                                                    </button>
+                                                    <button class="btn btn-labeled btn-danger" type="button" onclick="clickBtn({{value.id}}, 'delete', 'update-catalogo', 'frm1')">
+                                                        <span class="btn-label">
+                                                            <i class="glyphicon glyphicon-trash"></i>
+                                                        </span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'includesAdmin/footer.html' %}
+</div>
+</body>
+</html>
+
+
+
+
+
